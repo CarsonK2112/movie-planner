@@ -38,4 +38,17 @@ app.get('/', (req, res) => {
     })
 })
 
+app.post('/api/movies', (req, res) => {
+    const newMovieText = req.body.newMovieText
+    connection.query('INSERT INTO movies (movie) VALUES ?',
+    [newMovieText], (err, response) => {
+        if (err) throw err
+        res.status(200).send()
+    })
+})
+
+app.delete('/api/movies/:id', (req,res) => {
+    
+})
+
 app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`))

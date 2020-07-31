@@ -48,7 +48,11 @@ app.post('/api/movies', (req, res) => {
 })
 
 app.delete('/api/movies/:id', (req,res) => {
-    
+    const id = req.params.id
+    connection.query('DELETE FROM movies WHERE ?', { id }, (err, result) => {
+        if (err) throw err
+        res.status(200).send()
+    })
 })
 
 app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`))

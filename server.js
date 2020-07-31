@@ -32,4 +32,10 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
+app.get('/', (req, res) => {
+    connection.query('SELECT * FROM movies', (err, data) => {
+        res.render('index', {movies: data})
+    })
+})
+
 app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`))
